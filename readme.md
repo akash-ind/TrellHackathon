@@ -10,6 +10,13 @@ the dependencies by
 pip install -r requirement.txt
 ```
 
+For Populating the DB with tables
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
 Then simply run in project directory
 
 ```
