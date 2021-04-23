@@ -257,15 +257,15 @@ body {
 
 /* previews of user uploads */
 #one {
-  background-image: url('src/img/thumbnail-1.png');
+  background-image: url('/static/img/thumbnail-1.png');
 }
 
 #two {
-  background-image: url('src/img/thumbnail-2.png');
+  background-image: url('/static/img/thumbnail-2.png');
 }
 
 #three {
-  background-image: url('src/img/thumbnail-3.png');
+  background-image: url('/static/img/thumbnail-3.png');
 }
 
 .like {

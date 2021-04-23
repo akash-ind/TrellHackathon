@@ -18,7 +18,7 @@ body:before {
   width: 100%;
   height: 100%;
   opacity: 0.6;
-  background-image: url('/src/img/register.png');
+  background-image: url('/static/img/register.png');
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;

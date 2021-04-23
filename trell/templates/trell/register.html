@@ -45,9 +45,10 @@
             <h1>Welcome Back</h1>
             <span class="social-login"><img src="{% static 'img/facebook.svg' %}"></span>
             <span class="social-login"><img src="{% static 'img/google.svg' %}"></span>
-            <form method="POST">
-              <input type="email" placeholder="Email" class="input-field"><br>
-              <input type="password" placeholder="Password" class="input-field"><br>
+            <form method="POST" action="{% url 'trell:login' %}">
+            {% csrf_token %}
+              <input type="email" placeholder="Email" name='email' class="input-field"><br>
+              <input type="password" placeholder="Password" name='password' class="input-field"><br>
               <input type="submit" type="submit" value="Sign In" class="submit-btn">
             </form>
           </div>

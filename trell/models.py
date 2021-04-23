@@ -57,15 +57,16 @@ class UserTagScore(models.Model):
     user = models.ForeignKey("User", on_delete = models.CASCADE)
 
 
-class Vlog(models.Model):
-    vlog = models.FileField(upload_to="")
+class Trail(models.Model):
+    trail = models.ImageField(upload_to="", null=True, blank = True)
     description = models.TextField(null=True, blank=True)
+    trail_id = models.IntegerField(primary_key=True)
     user =  models.ForeignKey("User", on_delete = models.CASCADE)
     likes = models.IntegerField(default=0)
 
 
 class Comments(models.Model):
     comment = models.CharField(max_length=500)
-    vlog =  models.ForeignKey("Vlog", on_delete = models.CASCADE)
+    trail =  models.ForeignKey("Trail", on_delete = models.CASCADE)
     user =  models.ForeignKey("User", on_delete = models.CASCADE)
     likes = models.IntegerField(default=0)

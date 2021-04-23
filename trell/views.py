@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from trell.models import User
+from trell.models import User, Trail
 from django.contrib.auth import authenticate, login as user_login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -8,12 +8,16 @@ from django.contrib import messages
 
 def login(request):
     if request.method == "POST":
-        username = request.POST.get('username')
+        username = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(username = username, password = password)
         if user:
             user_login(request, user)
             messages.success(request, "Login Successful!!")
+            return redirect('trell:profile')
+        else:
+            messages.warning(request, "Can't  find user")
+            return redirect('trell:login')
     else:
         return render(request, 'trell/register.html')
 
@@ -42,10 +46,24 @@ def register(request):
 def profile(request):
     return render(request, 'trell/profile.html')
 
+
 @login_required
-def upload_vlogs(request):
-    if request.method == "GET":
-        return render(request, "")
-    else:
-        posted_data = request.POST
-        description = posted_data.get('description')
+def dashboard(request):
+    return render(request, 'trell/dashboard.html')
+
+from openpyxl import load_workbook
+from django.conf import settings
+import os
+
+
+@login_required
+def populate_trails(request):
+    wb = load_workbook(os.path.join(settings.BASE_DIR, 'Trell.xlsx'))
+    sheet = wb['Sheet1']
+    for i in range(2, 103):
+        id = int(float(sheet[f'A{i}'].value))
+        trail = Trail(trail_id = id)
+        trail.user =  request.user
+        trail.save()
+
+    return redirect('trell:dashboard')
