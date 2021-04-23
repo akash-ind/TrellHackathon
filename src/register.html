@@ -27,13 +27,13 @@
             <h1>Create Account</h1>
             <span class="social-login"><img src="src/img/facebook.svg"></span>
             <span class="social-login"><img src="src/img/google.svg"></span>
-            <form method="POST">
+            <form method="POST" action="">
               <div class="input-fields">
-                <input type="text" style="width: 50px;" placeholder="First Name" class="input-field"><br>
-                <input type="text" style="width: 50px;" placeholder="Last Name" class="input-field"><br>
+                <input type="text" style="width: 50px;" name="f_name" id="f_name" placeholder="First Name" class="input-field"><br>
+                <input type="text" style="width: 50px;" name="l_name" id="l_name" placeholder="Last Name" class="input-field"><br>
               </div>
-                <input type="email" placeholder="Email" class="input-field"><br>
-                <input type="password" placeholder="Password" class="input-field"><br>
+                <input type="email" name="email" id="email" placeholder="Email" class="input-field"><br>
+                <input type="password" name="password" id="password" placeholder="Password" class="input-field"><br>
                 <input class="submit-btn" type="submit" value="Sign up">
             </form>
           </div>
@@ -43,9 +43,9 @@
             <h1>Welcome Back</h1>
             <span class="social-login"><img src="src/img/facebook.svg"></span>
             <span class="social-login"><img src="src/img/google.svg"></span>
-            <form method="POST">
-              <input type="email" placeholder="Email" class="input-field"><br>
-              <input type="password" placeholder="Password" class="input-field"><br>
+            <form method="POST" action="">
+              <input type="email" name="email" id="email" placeholder="Email" class="input-field"><br>
+              <input type="password" name="password" id="password" placeholder="Password" class="input-field"><br>
               <input type="submit" type="submit" value="Sign In" class="submit-btn">
             </form>
           </div>
