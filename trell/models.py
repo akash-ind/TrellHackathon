@@ -46,14 +46,26 @@ class Tags(models.Model):
 
 
 class UniversalTagScore(models.Model):
-    tag = models.ForeignKey("Tags", on_delete = models.CASCASE)
+    tag = models.ForeignKey("Tags", on_delete = models.CASCADE)
     score = models.IntegerField(default=0)
 
 
 
 class UserTagScore(models.Model):
-    tag = models.ForeignKey("Tags", on_delete = models.CASCASE)
+    tag = models.ForeignKey("Tags", on_delete = models.CASCADE)
     score = models.IntegerField(default=0)
     user = models.ForeignKey("User", on_delete = models.CASCADE)
 
 
+class Vlog(models.Model):
+    vlog = models.FileField(upload_to="")
+    description = models.TextField(null=True, blank=True)
+    user =  models.ForeignKey("User", on_delete = models.CASCADE)
+    likes = models.IntegerField(default=0)
+
+
+class Comments(models.Model):
+    comment = models.CharField(max_length=500)
+    vlog =  models.ForeignKey("Vlog", on_delete = models.CASCADE)
+    user =  models.ForeignKey("User", on_delete = models.CASCADE)
+    likes = models.IntegerField(default=0)

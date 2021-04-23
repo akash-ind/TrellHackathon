@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from trell.models import User
 from django.contrib.auth import authenticate, login as user_login
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # Create your views here.
 
@@ -35,3 +36,13 @@ def register(request):
         user_login(request, user)
         messages.success(request, "User signed up successfully")
         return redirect("trell:login")
+
+
+@login_required
+def upload_vlogs(request):
+    if request.method == "GET":
+        return render(request, "")
+    else:
+        posted_data = request.POST
+        description = posted_data.get('description')
+        
