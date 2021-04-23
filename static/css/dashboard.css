@@ -68,7 +68,7 @@ body {
   text-decoration: none;
 }
 
-.site-map {
+.discover {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,7 +77,7 @@ body {
   position: relative;
 }
 
-.site-map > i {
+.discover > i {
   position: absolute;
   cursor: pointer;
   display: flex;
@@ -86,7 +86,7 @@ body {
   color: #2f2e41;
 }
 
-.site-map > a {
+.discover > a {
   position: absolute;
   display: flex;
   font-size: 15px;
