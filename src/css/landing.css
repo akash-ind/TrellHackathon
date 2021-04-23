@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    width: 700px;
+    height: 700px;
+    background: linear-gradient(180deg, #54255A 0%, rgba(255, 255, 255, 0) 100%), #C93A68;
+}
+.button {
+    border: none;
+    color: rgb(10, 0, 0);
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+ }
+  
+.register  {
+    background-color: #602768; 
+    color: #E5E5E5;
+}
+  
+.register:hover {
+    background-color: #E5E5E5;
+    color: black;
+}
+.signin{
+    background-color: #54255A; 
+    color: #E5E5E5;
+}
+  
+.signin:hover {
+    background-color: #E5E5E5;
+    color: black;
+}
+.registerSignin{
+    position: absolute;
+    color:#E5E5E5;;
+    width: 322px;
+    height: 41px;
+    left: 970px;
+    top: 50px;
+    font-family: monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 29px;
+    line-height: 41px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    mix-blend-mode: normal;
+}
+.logo{
+    position: relative;
+    left: 575px;
+    top: 130px;
+}
+.content{
+    position: relative;
+    top: 150px;
+    left: 290px;
+    text-align: center;
+}
+#txt1{
+    color:rgba(255, 255, 255, 0.788);
+    font-size: 30px;
+}
+#txt2{
+    color:rgba(255, 255, 255, 0.788);
+    font-size: 25px;
+}
+div.images{
+    position: relative;
+    top : 170px;
+    left: 463px;
+}
+.device{
+    padding: 14px;
+}
+div.arrow{
+    position: relative;
+    top: 230px;
+    left: 287px;
+    text-align: center;
+}
+.btn {
+    background-color: #C93A68;
+    border: none;
+    color: #E5E5E5;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color:#E5E5E5 ;
+    color: black;
+  }
+  .overlay {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    background-color: rgb(216, 10, 10);
+    background-color: rgba(94, 110, 106, 0.986);
+    background: linear-gradient(180deg, #54255A 0%, rgba(255, 255, 255, 0) 100%), #C93A68;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+  } 
+  .overlay p {
+    padding: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    text-decoration: none;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.863);
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay p {font-size: 20px}
+    .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  }
