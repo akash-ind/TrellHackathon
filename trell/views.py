@@ -6,6 +6,9 @@ from django.contrib import messages
 # Create your views here.
 
 
+def home(request):
+    return render(request, "trell/landing.html")
+
 def login(request):
     if request.method == "POST":
         username = request.POST.get('email')
