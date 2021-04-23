@@ -211,29 +211,29 @@ body {
 }
 
 /* trending content, category-wise */
-#video-one {
-  background-image: url('src/img/dashboard/fashion-1.png');
+/* #video-one {
+  background-image: url('img/dashboard/fashion-1.png');
 }
 
 #video-two {
-  background-image: url('src/img/dashboard/fashion-2.png');
+  background-image: url('img/dashboard/fashion-2.png');
 }
 
 #video-three {
-  background-image: url('src/img/dashboard/fitness-1.png');
+  background-image: url('img/dashboard/fitness-1.png');
 }
 
 #video-four {
-  background-image: url('src/img/dashboard/fitness-2.png');
+  background-image: url('img/dashboard/fitness-2.png');
 }
 
 #video-five {
-  background-image: url('src/img/dashboard/photo-1.png');
+  background-image: url('img/dashboard/photo-1.png');
 }
 
 #video-six {
-  background-image: url('src/img/dashboard/photo-2.png');
-}
+  background-image: url('img/dashboard/photo-2.png');
+} */
 
 .branch-end {
   display: flex;

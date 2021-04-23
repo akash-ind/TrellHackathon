@@ -123,6 +123,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/login'
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
