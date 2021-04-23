@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  position: absolute;
+  background: linear-gradient(
+    60.97deg,
+    #74aae9 0%,
+    rgba(202, 252, 243, 0.74) 99.51%,
+    rgba(202, 252, 243, 0.74) 99.52%
+  );
+}
+
+/* navigation */
+.navigate {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  height: 30vh;
+  width: 200vh;
+  margin: 0;
+  margin-top: -30%;
+  z-index: 10;
+}
+
+.profile-cam {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vh;
+  width: 100vh;
+  position: relative;
+}
+
+.profile-cam > i {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  padding: 5%;
+  left: 20%;
+  color: #2f2e41;
+}
+
+.profile-cam > a {
+  position: absolute;
+  display: flex;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  top: 65%;
+  left: 21%;
+  color: #2f2e41;
+  text-decoration: none;
+}
+
+.site-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vh;
+  width: 100vh;
+  position: relative;
+}
+
+.site-map > i {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  padding: 5%;
+  right: 25%;
+  color: #2f2e41;
+}
+
+.site-map > a {
+  position: absolute;
+  display: flex;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  top: 65%;
+  right: 27.5%;
+  color: #2f2e41;
+  text-decoration: none;
+}
+
+.tree {
+  display: flex;
+  position: absolute;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* shows hidden content */
+.pfp {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  background: rgba(84, 37, 90, 0.56);
+  border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.username > a {
+  display: flex;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  margin-top: 30%;
+  width: auto;
+  color: #2f2e41;
+}
+
+/* hidden content */
+.tree-head {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-top: -140%;
+  width: 200px;
+  height: 200px;
+  background: rgba(84, 37, 90, 0.56);
+  border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.tree-trunk {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1px;
+  margin-left: 5.75%;
+  width: 25px;
+  height: 61vh;
+  background: rgba(84, 37, 90, 0.56);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.branch {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 95vh;
+  background: rgba(84, 37, 90, 0.56);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.one {
+  margin-top: 2%;
+  margin-left: 7.35%;
+}
+
+.two {
+  margin-top: 8.75%;
+  margin-left: -38.8%;
+}
+
+.three {
+  margin-top: 15%;
+  margin-left: 7.35%;
+}
+
+.branch > p {
+  color: #f2f2f2;
+  letter-spacing: 1px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.branch-content {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  width: 17vw;
+  top: 13.5vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/* trending content, category-wise */
+#video-one {
+  background-image: url('/static/img/dashboard/fashion-1.png');
+}
+
+#video-two {
+  background-image: url('/static/img/dashboard/fashion-2.png');
+}
+
+#video-three {
+  background-image: url('/static/img/dashboard/fitness-1.png');
+}
+
+#video-four {
+  background-image: url('/static/img/dashboard/fitness-2.png');
+}
+
+#video-five {
+  background-image: url('/static/img/dashboard/photo-1.png');
+}
+
+#video-six {
+  background-image: url('/static/img/dashboard/photo-2.png');
+}
+
+.branch-end {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  margin-top: -140%;
+  width: 40px;
+  height: 40px;
+  background: rgb(84, 37, 90);
+  border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.end1 {
+  margin-top: 1.5%;
+  margin-left: 50%;
+}
+
+.end2 {
+  margin-top: 8.25%;
+  margin-left: -40.6%;
+}
+
+.end3 {
+  margin-top: 14.5%;
+  margin-left: 50%;
+}
+
+.clicktoshow {
+  cursor: pointer;
+}
+.showclick {
+  display: none;
+}
