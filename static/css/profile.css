@@ -60,6 +60,11 @@ body {
   text-decoration: none;
 }
 
+.back-to-dash {
+  width: max-content !important;
+  margin-left: -70% !important;
+}
+
 .bio {
   display: flex;
   height: 30vh;
