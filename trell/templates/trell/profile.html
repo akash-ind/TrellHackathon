@@ -25,7 +25,7 @@
           </div>
           <div class="bio">
             <p>
-              Hi, I’m Neha. If you like fashion, food or photography, follow my vlogs to get your daily dose of the same!
+              Hi, I’m {{request.user}}. If you like fashion, food or photography, follow my vlogs to get your daily dose of the same!
             </p>
           </div>
           <div class="pfp">
@@ -62,55 +62,23 @@
           <div class="arrow arrow-left">
             <i class="fas fa-angle-double-left fa-3x"></i>
           </div>
-          
+          {% for trail in trails %}
           <div class="card">
-            <h3 class="thumbnail" id="one"></h3>
-            <div class="like">
-              <i class="fas fa-heart one"></i>
-              <script>
-                // clicking the like button adds/remove class "press1"
-                $(function() {
-                  $( "i.one" ).click(function() {
-                    $( "i.one" ).toggleClass( "press1", 1000 );
-                  });
-                });
-              </script>
-            </div>
-            <div class="caption">Quick photoshoot!</div>
-          </div>
-
-          <div class="card">
-            <h3 class="thumbnail" id="two"></h3>
+            <h3 class="thumbnail" id="two{{forloop.counter}}"></h3>
             <div class="like">
               <i class="fas fa-heart two"></i>
               <script>
                 // clicking the like button adds/remove class "press2"
                 $(function() {
-                  $( "i.two" ).click(function() {
-                    $( "i.two" ).toggleClass( "press2", 1000 );
+                  $( "two{{forloop.counter}}" ).click(function() {
+                    $( "two{{forloop.counter}}" ).toggleClass( "press2", 1000 );
                   });
                 });
               </script>
             </div>
-            <div class="caption">Thrifting haul <3</div>
+            <div class="caption">{{trail.title}}</div>
           </div>
-
-          <div class="card">
-            <h3 class="thumbnail" id="three"></h3>
-            <div class="like">
-              <i class="fas fa-heart three"></i>
-              <script>
-                // clicking the like button adds/remove class "press3"
-                $(function() {
-                  $( "i.three" ).click(function() {
-                    $( "i.three" ).toggleClass( "press3", 1000 );
-                  });
-                });
-              </script>
-            </div>
-            <div class="caption">Cook an easy Sunday morning breakfast with me!</div>
-          </div>
-
+          {% endfor %}
           <div class="arrow arrow-right">
             <i class="fas fa-angle-double-right fa-3x"></i>
           </div>

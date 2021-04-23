@@ -9,5 +9,7 @@ urlpatterns = [
     path('register', views.register, name="register"),
     path('profile', views.profile, name='profile'),
     path('dashboard', views.dashboard, name='dashboard'),
-    path('load_trails', views.populate_trails),
+    path('load_users', views.load_users),
+    path('load_trails', views.load_trails),
+    path('change_users', views.change_users),
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from trell.models import User, Trail
+from trell.models import User, Trail, Tags, UserTagScore
 from django.contrib.auth import authenticate, login as user_login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -47,12 +47,30 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'trell/profile.html')
+    trails = Trail.objects.filter(user = request.user).order_by('-created')[:2]
+    context = {}
+    context['trails'] = trails
+    print(context)
+    return render(request, 'trell/profile.html', context)
 
 
 @login_required
 def dashboard(request):
-    return render(request, 'trell/dashboard.html')
+    context = {}
+    fashion_tag = Tags.objects.get(tag__iexact = 'fashion')
+    fashion_trails =  Trail.objects.filter(tags= fashion_tag).order_by('-popularity')[:2]
+
+    travel_tag = Tags.objects.get(tag__iexact = 'travel')
+    travel_trails =  Trail.objects.filter(tags= travel_tag).order_by('-popularity')[:2]
+
+    entertainment_tag = Tags.objects.get(tag__iexact = 'entertainment')
+    entertainment_trails =  Trail.objects.filter(tags= entertainment_tag).order_by('-popularity')[:2]
+
+    context['fashion_trails'] = fashion_trails
+    context['travel_trails'] = travel_trails
+    context['entertainment_trails'] = entertainment_trails
+    return render(request, 'trell/dashboard.html', context)
+
 
 from openpyxl import load_workbook
 from django.conf import settings
@@ -70,3 +88,65 @@ def populate_trails(request):
         trail.save()
 
     return redirect('trell:dashboard')
+
+@login_required
+def load_users(request):
+    wb = load_workbook(os.path.join(settings.BASE_DIR, 'Trell_Final.xlsx'))
+    sheet = wb['Users']
+    tags = Tags.objects.all()
+    for i in range(2, 455):
+        user_id = int(sheet[f'A{i}'].value)
+        user = User(user_id = user_id)
+        user.email = f'some{i}@email.com'
+        user.set_password('akash')
+        user.save()
+        for j in range(13):
+            letter = chr(ord('B')+j)
+            tag_score = UserTagScore(user = user)
+            tag_score.score = int(sheet[f'{letter}{i}'].value)
+            tag_score.tag = tags[j]
+            tag_score.save()
+    return redirect("trell:dashboard")
+
+@login_required
+def load_trails(request):
+    wb = load_workbook(os.path.join(settings.BASE_DIR, 'Trell_Final-1.xlsx'))
+    sheet = wb['Sheet2']
+    tags = Tags.objects.all()
+    for i in range(2, 305):
+        trail_id = int(sheet[f'A{i}'].value)
+        trail = Trail(trail_id = trail_id)
+        trail.title =  f'trail-{i}'
+        trail.user = request.user
+        trail.popularity = float(sheet[f'O{i}'].value)
+        try:
+            trail.save()
+        except:
+            pass
+        for j in range(13):
+            letter = chr(ord('B')+j)
+            if sheet[f'{letter}{i}'].value >0:
+                trail.tags.add(tags[j])
+
+    return redirect("trell:dashboard")
+
+
+
+def change_users(request):
+    users = User.objects.all()
+    trails = Trail.objects.all()
+    trail_count = trails.count()
+    user_count = users.count()
+    trail_per_user = trail_count//user_count
+    print(trail_per_user)
+    j = 0
+    no = 0
+    for trail in trails:
+        if no > trail_per_user and j <user_count - 1:
+            j+=1
+            no = 0 
+        user = users[j]
+        trail.user = user
+        trail.save()
+        no+=1
+    return redirect("trell:dashboard")
