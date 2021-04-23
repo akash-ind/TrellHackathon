@@ -71,6 +71,21 @@ def dashboard(request):
     context['entertainment_trails'] = entertainment_trails
     return render(request, 'trell/dashboard.html', context)
 
+@login_required
+def discover(request):
+    context = {}
+    if request.GET.get('tag'):
+        tag = request.get('tag')
+        try:
+            tag = Tags.objects.get(tag__iexact=tag)
+        except:
+            tag = None
+    if tag:
+        trails = Trail.objects.filter(tag = tag).exclude(watched_by = request.user)
+    else:
+        trails = Trail.objects.exclude(watched_by = request.user)
+    context['trails'] = trails
+    return render(request, 'trell/discover.html', context)
 
 from openpyxl import load_workbook
 from django.conf import settings
