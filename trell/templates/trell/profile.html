@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+
+  <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile</title>
+        <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+        <link rel="icon" href="{% static 'img/logo.jpg' %}">
+        <link href="{% static 'css/fontawesome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/solid.css' %}" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+      </head>
+
+    <body>
+      <div class="container">
+        <!-- section 1 -->
+        <div class="info">
+          <div class="upload">
+            <i class="fas fa-upload fa-3x"></i>
+            <a href=""> Upload Vlog</a>
+          </div>
+          <div class="bio">
+            <p>
+              Hi, I’m Neha. If you like fashion, food or photography, follow my vlogs to get your daily dose of the same!
+            </p>
+          </div>
+          <div class="pfp">
+            <img style="display: flex; width: 22.5vh; height: 22.5vh;" src="src/img/profile_pic.png">
+            <p> @neha_m </p>
+          </div>
+        </div>
+
+        <!-- section 2 -->
+        <div class="buttons">
+          <div class="filter">
+            <button onclick="dropdownMenu()" class="dropbtn">Filter by ⇣</button>
+            <div id="dropdown" class="dropdown-content">
+              <a href="">Most Recent</a>
+              <a href="">Most Liked</a>
+              <a href="">Most Views</a>
+            </div>
+          </div>
+          <script>
+            // displays content filtering options
+            function dropdownMenu() {
+              document.getElementById("dropdown").classList.toggle("show");
+            }
+          </script>
+
+          <div class="follow">
+            <button type="button" href="">Follow</button>
+          </div>
+        </div>
+        
+        <!-- section 3 -->
+        <!-- shows previews of user uploads -->
+        <div class="cards">
+          <div class="arrow arrow-left">
+            <i class="fas fa-angle-double-left fa-3x"></i>
+          </div>
+          
+          <div class="card">
+            <h3 class="thumbnail" id="one"></h3>
+            <div class="like">
+              <i class="fas fa-heart one"></i>
+              <script>
+                // clicking the like button adds/remove class "press1"
+                $(function() {
+                  $( "i.one" ).click(function() {
+                    $( "i.one" ).toggleClass( "press1", 1000 );
+                  });
+                });
+              </script>
+            </div>
+            <div class="caption">Quick photoshoot!</div>
+          </div>
+
+          <div class="card">
+            <h3 class="thumbnail" id="two"></h3>
+            <div class="like">
+              <i class="fas fa-heart two"></i>
+              <script>
+                // clicking the like button adds/remove class "press2"
+                $(function() {
+                  $( "i.two" ).click(function() {
+                    $( "i.two" ).toggleClass( "press2", 1000 );
+                  });
+                });
+              </script>
+            </div>
+            <div class="caption">Thrifting haul <3</div>
+          </div>
+
+          <div class="card">
+            <h3 class="thumbnail" id="three"></h3>
+            <div class="like">
+              <i class="fas fa-heart three"></i>
+              <script>
+                // clicking the like button adds/remove class "press3"
+                $(function() {
+                  $( "i.three" ).click(function() {
+                    $( "i.three" ).toggleClass( "press3", 1000 );
+                  });
+                });
+              </script>
+            </div>
+            <div class="caption">Cook an easy Sunday morning breakfast with me!</div>
+          </div>
+
+          <div class="arrow arrow-right">
+            <i class="fas fa-angle-double-right fa-3x"></i>
+          </div>
+        </div>  
+
+      </div>
+    </body>
+  </html>

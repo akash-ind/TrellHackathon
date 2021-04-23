@@ -39,10 +39,13 @@ def register(request):
 
 
 @login_required
+def profile(request):
+    return render(request, 'trell/profile.html')
+
+@login_required
 def upload_vlogs(request):
     if request.method == "GET":
         return render(request, "")
     else:
         posted_data = request.POST
         description = posted_data.get('description')
-        
