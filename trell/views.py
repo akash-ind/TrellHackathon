@@ -3,6 +3,8 @@ from trell.models import User, Trail, Tags, UserTagScore
 from django.contrib.auth import authenticate, login as user_login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 # Create your views here.
 
 
@@ -74,18 +76,34 @@ def dashboard(request):
 @login_required
 def discover(request):
     context = {}
+    tag = None
     if request.GET.get('tag'):
-        tag = request.get('tag')
+        tag = request.GET.get('tag')
         try:
             tag = Tags.objects.get(tag__iexact=tag)
         except:
             tag = None
     if tag:
-        trails = Trail.objects.filter(tag = tag).exclude(watched_by = request.user)
+        trails = Trail.objects.filter(tags = tag).exclude(watched_by = request.user).order_by('-popularity')[:20]
     else:
-        trails = Trail.objects.exclude(watched_by = request.user)
+        trails = Trail.objects.exclude(watched_by = request.user).order_by('-popularity')[:20]
     context['trails'] = trails
+    tags = Tags.objects.all()
+    context['tags'] = tags
     return render(request, 'trell/discover.html', context)
+
+
+@login_required
+@api_view(["POST"])
+def add_to_watched(request):
+    user = request.user
+    trail_id = request.data.get('id')
+    print(trail_id)
+    trail = Trail.objects.get(trail_id = trail_id)
+    trail.watched_by.add(user)
+    return Response({'watched':True})
+
+
 
 from openpyxl import load_workbook
 from django.conf import settings
@@ -165,20 +183,49 @@ def change_users(request):
         trail.save()
         no+=1
     return redirect("trell:dashboard")
-'''import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
+from urllib.request import Request
+import requests
 
 # Ignore SSL certificate errors
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+def load_images(request):
+    tags = Tags.objects.all()
+    for tag in tags:
+        trails =  Trail.objects.filter(tags = tag, image=None).order_by('created')
+        tag = tag.tag.lower()
+        tag.replace(" ", '+')
+        url = f"https://pixabay.com/api/"
+        res = requests.get(url, params={
+            "key":"21306606-c6eb388df60ea6f319d5318e0",
+            "q":tag, 
+            'per_page':100, 
+            'image_type':'photo'})
+        print({
+            "key":"21306606-c6eb388df60ea6f319d5318e0",
+            "q":tag, 
+            'per_page':100, 
+            'image_type':'photo'})
+        print(res)
+        response = res.json()
+        print(response)
+        # Retrieve all of the anchor tags
+        j = 0
+        hits = response['hits']
+        for img in hits:
+            if j>=trails.count():
+                break
+            trail = trails[j]
+            trail.image = img.get('webformatURL', None)
+            print(trail.image)
+            trail.save()
+            j+=1
+    return redirect("trell:dashboard")
 
-url = input('Enter - ')
-html = urllib.request.urlopen(url, context=ctx).read()
-soup = BeautifulSoup(html, 'html.parser')
 
-# Retrieve all of the anchor tags
-tags = soup('img')
-for tag in tags:
-print(tag.get('src', None))'''
+def all_tags(request):
+    tags = Tags.objects.all()
+    for tag in tags:
+        cnt= tag.trail_set.all().count()
+        print(tag.tag, cnt)

@@ -9,6 +9,8 @@
     <title>Discover</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
 <style>
 * {
   box-sizing: border-box;
@@ -139,14 +141,20 @@ h1 {
 <!-- MAIN (Center website) -->
 <div class="main">
     <nav>
-        <div class="logo">
-            <input type="text" placeholder="Search..">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          {% for tag in tags %}
+            <li><a class="dropdown-item" href="?tag={{tag.tag}}">{{tag.tag}}</a></li>
+          {% endfor %}
+          </ul>
         </div>
         <div class="nav-links">
             <ul>
-                <li><a href="#">Profile</a> </li>
-                <li><a href="#">Settings</a> </li>
-                <li><a href="#">About us</a> </li>
+                <li><a href="{% url 'trell:profile' %}">Profile</a> </li>
+                <li><a href="{% url 'trell:home' %}">About us</a> </li>
                 <li><a href="#">Sign out</a> </li>
             </ul>
         </div>
@@ -157,63 +165,15 @@ h1 {
 <hr>
 
 <!-- Portfolio Gallery Grid -->
-<div class="row">
+<div class="row" id ="trails">
+{% for trail in trails %}
   <div class="column">
     <div class="content">
-      <img src="logo.jpg" alt = "image" width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
+      <img src="{{trail.image}}" alt = "image" width="200" height = "100"><br>
+      <button style="font-size:21px; cursor: pointer;" data-value="trail" value="{{trail.trail_id}}"><i class="fa fa-play-circle-o"></i></button>
     </div>
   </div>
-  <div class="column">
-    <div class="content">
-    <img src="Macbook.png" alt="image" width="200" height = "100"><br>
-    <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-    <img src="Smartphone.png"alt="image" width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="content">
-      <img src="/w3images/cars2.jpg"alt="image"width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-    <img src="/w3images/cars2.jpg" alt="image" width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-    <img src="/w3images/cars3.jpg" alt="image" width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="content">
-      <img src="/w3images/people1.jpg" alt="image" width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-    <img src="/w3images/people2.jpg" alt="image" width="200" height = "100"><br>
-      <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-    <img src="/w3images/people3.jpg" alt="image" width="200" height = "100"><br>
-    <button style="font-size:21px; cursor: pointer;"><i class="fa fa-play-circle-o"></i></button>
-    </div>
-  </div>
+{% endfor %}
 <!-- END GRID -->
 </div>
 
@@ -253,6 +213,30 @@ function w3RemoveClass(element, name) {
   element.className = arr1.join(" ");
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
 </body>
 </html>
+<script type="text/javascript">
+  let csrf = "{{csrf_token}}";
+  trails = document.getElementById("trails");
+  trails.addEventListener('click', event=>{
+    value = event.target.getAttribute('data-value')
+    if(value!='trail')
+    {
+      return;
+    }
+    value = event.target.value;
+    console.log(value);
+    fetch("{% url 'trell:add_to_watched' %}", {
+          method: "POST",
+          body: JSON.stringify({ id: value }),
+          headers: {
+              'Content-Type': "application/json",
+              'X-CsrfToken': csrf
+          }
+        })
+          .then(res => res.json())
+          .then(data=>console.log(data))
+  })
+</script>

@@ -57,23 +57,23 @@
             <div class="tree-branch">
 
               <div class="branch one"> 
-                <div class="branch-content"><img src="{% static 'img/dashboard/fashion-1.png' %}" /></div>
-                <p>FASHION</p>
-                <div class="branch-content"></div>
+                <div class="branch-content"><img src="{{fashion_trails.0.image}}" /></div>
+                <a href="{% url 'trell:discover' %}?tag=fashion">FASHION</a>
+                <div class="branch-content"><img src="{{fashion_trails.1.image}}" /></div>
               </div>
               <div class="branch-end end1"></div>
 
               <div class="branch two">
-                <div class="branch-content" id="video-three"></div> 
-                <p>ENTERTAINMENT</p>
-                <div class="branch-content" id="video-four"></div>
+                <div class="branch-content"><img src="{{entertainment_trails.0.image}}" /></div> 
+                <a href="{% url 'trell:discover' %}?tag=entertainment">ENTERTAINMENT</a>
+                <div class="branch-content"><img src="{{entertainment_trails.1.image}}" /></div>
               </div>
               <div class="branch-end end2"></div>
 
               <div class="branch three">
-                <div class="branch-content" id="video-five"></div> 
-                <p style="margin-left: -10px; font-size: x-small !important; width: 5vw;">TRAVEL</p>
-                <div class="branch-content" style="margin-left: 10px !important;" id="video-six"></div>
+                <div class="branch-content"><img src="{{travel_trails.0.image}}" /></div> 
+                <a href="{% url 'trell:discover' %}?tag=travel">TRAVEL</a>
+                <div class="branch-content" style="margin-left: 10px !important;"></div>
               </div>
               <div class="branch-end end3"></div>
             </div>

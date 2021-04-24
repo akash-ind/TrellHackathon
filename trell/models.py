@@ -76,7 +76,7 @@ class UserTagScore(models.Model):
 class Trail(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    trail = models.ImageField(upload_to="", null=True, blank = True)
+    image = models.URLField(null=True, blank = True)
     title = models.CharField(max_length = 500, blank=True, null= True)
     popularity  = models.FloatField(default=0.0)
     tags = models.ManyToManyField("Tags", blank=True)
