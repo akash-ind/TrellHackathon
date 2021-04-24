@@ -1,24 +1,25 @@
 # Project API
 
-Trell Hackathon - Project implementing better visualizations of user responses. Hence recommending better.
+Trell Hackathon - Project on implementation of better visualisation of user response and content recommendation.
 
 ## Getting Started
 
-To get started on your PC. Clone the repository. And then in virtual environment install
-the dependencies by
+To get started on your PC, clone the repository and install the dependencies in virtual environment using
+
 ```
 pip install -r requirement.txt
 ```
 
-For Populating the DB with tables
+For Populating the DB with tables,
 
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-Then simply run in project directory
+Then, run the following command in the project directory:
 
+For Windows
 ```
 python manage.py runserver
 ```
