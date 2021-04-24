@@ -27,7 +27,7 @@
   
           <div class="discover">
             <i class="fas fa-search fa-3x"></i>
-            <a href="#">DISCOVER</a>
+            <a href="{% url 'trell:discover' %}">DISCOVER</a>
           </div>
         </div>
 
@@ -57,22 +57,34 @@
             <div class="tree-branch">
 
               <div class="branch one"> 
-                <div class="branch-content"><img src="{{fashion_trails.0.image}}" /></div>
-                <a href="{% url 'trell:discover' %}?tag=fashion">FASHION</a>
-                <div class="branch-content"><img src="{{fashion_trails.1.image}}" /></div>
+                <div class="branch-content"><img src="{{fashion_trails.0.image}}" height="100%" width="100%"/></div>
+                <a style="color: #f2f2f2;
+                letter-spacing: 1px;
+                font-size: large;
+                cursor: pointer;
+                text-decoration: none;" href="{% url 'trell:discover' %}?tag=fashion">FASHION</a>
+                <div class="branch-content"><img src="{{fashion_trails.1.image}}"  height="100%" width="100%"/></div>
               </div>
               <div class="branch-end end1"></div>
 
               <div class="branch two">
-                <div class="branch-content"><img src="{{entertainment_trails.0.image}}" /></div> 
-                <a href="{% url 'trell:discover' %}?tag=entertainment">ENTERTAINMENT</a>
-                <div class="branch-content"><img src="{{entertainment_trails.1.image}}" /></div>
+                <div class="branch-content"><img src="{{entertainment_trails.0.image}}"  height="100%" width="100%"/></div> 
+                <a style="color: #f2f2f2;
+                letter-spacing: 1px;
+                font-size: large;
+                cursor: pointer;
+                text-decoration: none;" href="{% url 'trell:discover' %}?tag=entertainment">ENTERTAINMENT</a>
+                <div class="branch-content"><img src="{{entertainment_trails.1.image}}"  height="100%" width="100%"/></div>
               </div>
               <div class="branch-end end2"></div>
 
               <div class="branch three">
-                <div class="branch-content"><img src="{{travel_trails.0.image}}" /></div> 
-                <a href="{% url 'trell:discover' %}?tag=travel">TRAVEL</a>
+                <div class="branch-content"><img src="{{travel_trails.0.image}}"  height="100%" width="100%"/></div> 
+                <a style="color: #f2f2f2;
+                letter-spacing: 1px;
+                font-size: large;
+                cursor: pointer;
+                text-decoration: none;" href="{% url 'trell:discover' %}?tag=travel">TRAVEL</a>
                 <div class="branch-content" style="margin-left: 10px !important;"></div>
               </div>
               <div class="branch-end end3"></div>

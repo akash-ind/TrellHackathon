@@ -65,7 +65,9 @@
           </div>
           {% for trail in trails %}
           <div class="card">
-            <h3 class="thumbnail" id="two{{forloop.counter}}"></h3>
+            <h3 class="thumbnail" id="two{{forloop.counter}}">
+              <img src="{{trail.image}}" width="100%" height="100%"/>
+            </h3>
             <div class="like">
               <i class="fas fa-heart two"></i>
               <script>

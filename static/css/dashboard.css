@@ -190,12 +190,12 @@ body {
   margin-left: 7.35%;
 }
 
-.branch > p {
+/* .branch > a {
   color: #f2f2f2;
   letter-spacing: 1px;
   font-size: large;
   cursor: pointer;
-}
+} */
 
 .branch-content {
   display: flex;
